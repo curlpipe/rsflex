@@ -58,8 +58,10 @@ pub fn get_disk() -> String {
     let result = result.split('\n')
         .collect::<Vec<&str>>()[1]
         .to_string();
-    let diskstat = result.split(' ').collect::<Vec<&str>>();
-    format!("{} {} / {} ({})", " ", diskstat[5], diskstat[2], diskstat[10])
+    let mut result = result.split(' ')
+        .collect::<Vec<&str>>();
+    result.retain(|x| !x.is_empty());
+    format!("{} {} / {} ({})", " ", result[2], result[1], result[4])
 }
 
 pub fn get_memory() -> String {
