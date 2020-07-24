@@ -179,6 +179,11 @@ pub fn get_music() -> String {
         .stdout(Stdio::piped())
         .output()
         .expect("Error");
-    format!("{} {}", "ﱘ ", String::from_utf8_lossy(&cmd.stdout).trim().to_string())
+    let song = String::from_utf8_lossy(&cmd.stdout).trim().to_string();
+    if song.is_empty() {
+        String::new()
+    } else {
+        format!("{} {}", "ﱘ ", song)
+    }
 }
 
