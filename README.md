@@ -1,5 +1,7 @@
 # Rsflex (Rust Flex)
 
+<img src="https://i.postimg.cc/DyPtQ50g/image.png">
+
 A tool similar to that of neofetch and rsfetch that gets system information in the blink of an eye.
 
 # Configuration
