@@ -17,7 +17,6 @@ fn main() {
 
     print!("{}", color::Fg(color::Blue));
 
-    println!();
     println!("{20}                   ▄                     {19}{}\r
 {20}                  ▟█▙                    {19}{}\r
 {20}                 ▟███▙                   {19}{}\r
