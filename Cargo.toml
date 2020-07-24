@@ -1,0 +1,8 @@
+[package]
+name = "rsflex"
+version = "0.1.0"
+authors = ["Curly <luke@dominoid.net>"]
+edition = "2018"
+
+[dependencies]
+termion = "1"
