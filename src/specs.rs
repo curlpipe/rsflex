@@ -169,7 +169,7 @@ pub fn get_packages() -> String {
         .stdout(Stdio::piped())
         .output()
         .expect("Error");
-    format!("{} {}", " ", String::from_utf8_lossy(&cmd.stdout).trim().to_string())
+    format!("{} {} (pacman)", " ", String::from_utf8_lossy(&cmd.stdout).trim().to_string())
 }
 
 pub fn get_music() -> String {
