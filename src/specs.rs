@@ -4,7 +4,7 @@ use std::fs;
 
 pub fn get_product() -> String {
     match fs::read_to_string("/sys/devices/virtual/dmi/id/product_version") {
-        Ok(product) => format!("{} {}", "💻", product.trim().to_string()),
+        Ok(product) => format!("{} {}", "💻 ", product.trim().to_string()),
         Err(_) => String::new(),
     }
 }
@@ -20,7 +20,7 @@ pub fn get_uptime() -> String {
     
     let day = uptime / (24 * 3600);
     uptime %= 24 * 3600;
-    format!("{} {} days, {} hours", " ", day, uptime / 3600)
+    format!("{} {} days, {} hours", "  ", day, uptime / 3600)
 }
 
 pub fn get_cpu() -> String {
@@ -33,7 +33,7 @@ pub fn get_cpu() -> String {
             model = cpuinfo[1].to_string()
         }
     }
-    format!("{} {}", " ", model)
+    format!("{} {}", "  ", model)
 }
 
 pub fn get_gpu() -> String {
@@ -44,7 +44,7 @@ pub fn get_gpu() -> String {
         .output()
         .expect("Error");
     let result = String::from_utf8_lossy(&cmd.stdout);
-    format!("{} {}", " ", result.split('"').collect::<Vec<&str>>()[5].to_string())
+    format!("{} {}", "  ", result.split('"').collect::<Vec<&str>>()[5].to_string())
 }
 
 pub fn get_disk() -> String {
@@ -61,7 +61,7 @@ pub fn get_disk() -> String {
     let mut result = result.split(' ')
         .collect::<Vec<&str>>();
     result.retain(|x| !x.is_empty());
-    format!("{} {} / {} ({})", " ", result[2], result[1], result[4])
+    format!("{} {} / {} ({})", "  ", result[2], result[1], result[4])
 }
 
 pub fn get_memory() -> String {
@@ -84,7 +84,7 @@ pub fn get_memory() -> String {
             _ => (),
         }
     }
-    format!("{} {:.0}mb / {:.0}mb", " ", used / 1024.0, total / 1024.0)
+    format!("{} {:.0}mb / {:.0}mb", "  ", used / 1024.0, total / 1024.0)
 }
 
 pub fn get_resolution() -> String {
@@ -96,7 +96,7 @@ pub fn get_resolution() -> String {
         .expect("Error");
     let result = String::from_utf8_lossy(&cmd.stdout);
     let result = result.split(',').collect::<Vec<&str>>()[1];
-    format!("{} {}", " ", result.replace("current ", "").trim().to_string())
+    format!("{} {}", "  ", result.replace("current ", "").trim().to_string())
 }
 
 pub fn get_kernel() -> String {
@@ -106,11 +106,11 @@ pub fn get_kernel() -> String {
         .stdout(Stdio::piped())
         .output()
         .expect("Error");
-    format!("{} {}", " ", String::from_utf8_lossy(&cmd.stdout).trim().to_string())
+    format!("{} {}", "  ", String::from_utf8_lossy(&cmd.stdout).trim().to_string())
 }
 
 pub fn get_distro() -> String {
-    format!("{} {}", " ", fs::read_to_string("/etc/os-release").unwrap()
+    format!("{} {}", "  ", fs::read_to_string("/etc/os-release").unwrap()
         .split('"').collect::<Vec<&str>>()[1].to_string())
 }
 
@@ -134,7 +134,7 @@ pub fn get_wmde() -> String {
             }
         }
     }
-    format!("{} {}", " ", result)
+    format!("{} {}", "  ", result)
 }
 
 pub fn get_theme() -> [String; 4] {
@@ -156,10 +156,10 @@ pub fn get_theme() -> [String; 4] {
             _ => (),
         }
     }
-    return [format!("{} {}", " ", theme), 
-            format!("{} {}", " ", icons), 
-            format!("{} {}", " ", font), 
-            format!("{} {}", " ", cursor)];
+    return [format!("{} {}", "  ", theme), 
+            format!("{} {}", "  ", icons), 
+            format!("{} {}", "  ", font), 
+            format!("{} {}", "  ", cursor)];
 }
 
 pub fn get_packages() -> String {
@@ -169,7 +169,7 @@ pub fn get_packages() -> String {
         .stdout(Stdio::piped())
         .output()
         .expect("Error");
-    format!("{} {} (pacman)", " ", String::from_utf8_lossy(&cmd.stdout).trim().to_string())
+    format!("{} {} (pacman)", "  ", String::from_utf8_lossy(&cmd.stdout).trim().to_string())
 }
 
 pub fn get_music() -> String {
@@ -183,7 +183,7 @@ pub fn get_music() -> String {
     if song.is_empty() {
         String::new()
     } else {
-        format!("{} {}", "ﱘ ", song)
+        format!("{} {}", "ﱘ  ", song)
     }
 }
 

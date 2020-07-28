@@ -4,7 +4,7 @@ use termion::color;
 use specs::*;
 
 fn main() {
-    let colorscheme = format!("{}   {}   {}   {}   {}   {}   {}   {}   {}", 
+    let dark_scheme = format!("{}   {}   {}   {}   {}   {}   {}   {}   {}", 
                                color::Bg(color::Black),
                                color::Bg(color::Red),
                                color::Bg(color::Green),
@@ -13,6 +13,16 @@ fn main() {
                                color::Bg(color::Magenta),
                                color::Bg(color::Cyan),
                                color::Bg(color::White),
+                               color::Bg(color::Reset));
+    let light_scheme = format!("{}   {}   {}   {}   {}   {}   {}   {}   {}", 
+                               color::Bg(color::LightBlack),
+                               color::Bg(color::LightRed),
+                               color::Bg(color::LightGreen),
+                               color::Bg(color::LightBlue),
+                               color::Bg(color::LightYellow),
+                               color::Bg(color::LightMagenta),
+                               color::Bg(color::LightCyan),
+                               color::Bg(color::LightWhite),
                                color::Bg(color::Reset));
 
     print!("{}", color::Fg(color::Blue));
@@ -54,8 +64,8 @@ fn main() {
     get_packages(),
     get_music(), 
     "", //get_theme()[2],
-    colorscheme, // For showing off your colorscheme
-    "",
+    dark_scheme, // For showing off your darker colorscheme
+    light_scheme, // For showing off your lighter colorscheme
     color::Fg(color::LightWhite), // Color of the text
     color::Fg(color::Blue),  // Color of the logo
 );
