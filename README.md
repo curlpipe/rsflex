@@ -10,6 +10,12 @@ In the `src/main.rs` file, you can look towards the bottom of the file and rearr
 
 # Installation
 
+## Handy AUR package
+rsflex is on the AUR under the name of `rsflex`
+you can install it by doing: `yay -S rsflex`
+
+## Buliding rsflex manually
+
 Here is what you have to have if you wish to have the full experience of rsflex:
 
  - A modern installation of the rust compiler and cargo `rustup`
