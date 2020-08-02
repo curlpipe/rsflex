@@ -1,6 +1,6 @@
 [package]
 name = "rsflex"
-version = "0.2.2"
+version = "0.2.3"
 authors = ["Curly"]
 edition = "2018"
 
