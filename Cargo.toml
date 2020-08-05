@@ -4,5 +4,8 @@ version = "0.2.3"
 authors = ["Curly"]
 edition = "2018"
 
+[profile.release]
+lto = true
+
 [dependencies]
 termion = "1"
