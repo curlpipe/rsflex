@@ -2,7 +2,7 @@ use std::env;
 use std::fs;
 use std::process::{Command, Stdio};
 
-#[warn(dead_code)]
+#[allow(dead_code)]
 pub fn get_product() -> String {
     match fs::read_to_string("/sys/devices/virtual/dmi/id/product_version") {
         Ok(product) => format!("{} {}", "💻 ", product.trim().to_string()),
