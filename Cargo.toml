@@ -1,8 +1,14 @@
 [package]
 name = "rsflex"
 version = "0.2.3"
-authors = ["Curly"]
-edition = "2018"
+authors = ["Curly <11898833+curlpipe@users.noreply.github.com>"]
+description = "A super fast system information displayer written in Rust"
+homepage = "https://github.com/curlpipe/rsflex"
+repository = "https://github.com/curlpipe/rsflex"
+license = "MPL-2.0"
+license-file = "LICENSE"
+readme = "README.md"
+keywords = ["flex", "fetch", "rust", "terminal", "command-line"]
 
 [profile.release]
 lto = true
