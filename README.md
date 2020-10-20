@@ -10,6 +10,16 @@ In the `src/main.rs` file, you can look towards the bottom of the file and rearr
 
 ## Installation
 
+### A) AUR
+
+Rsflex is available on the Arhc User Repository as `rsflex-git`:
+
+```
+yay -S rsflex-git
+```
+
+### B) Cargo
+
 Dependencies:
 
  - `rustup` - Modern installation of Rust.
@@ -23,21 +33,13 @@ Dependencies:
 
 On Arch Linux, these can all be installed with:
 ```
-yay -S pciutils coreutils xorg-xrandr playerctl ttf-nerd-fonts-symbols curl rustup
+yay -S pciutils coreutils xorg-xrandr playerctl ttf-nerd-fonts-symbols cargo
 ```
 
-### A) Cargo
+**Note: These dependencies are only needed if installed via Cargo, they are included automatically with the AUR package above.**
 
 ```
 cargo install rsflex
-```
-
-### B) AUR
-
-Rsflex is available on the Arhc User Repository as `rsflex-git`:
-
-```
-yay -S rsflex-git
 ```
 
 ## Compiling
