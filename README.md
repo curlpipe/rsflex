@@ -2,15 +2,13 @@
 
 <img src="https://i.postimg.cc/DyPtQ50g/image.png">
 
-A tool similar to that of neofetch and rsfetch that gets system information in the blink of an eye.
+System information tool like neofetch or rsfetch with a fast, beautiful CLI.
 
 ## Configuration
 Rsflex aims to be so simple that you can easily edit the source code!
 In the `src/main.rs` file, you can look towards the bottom of the file and rearrange the functions to your hearts content!
 
 ## Installation
-
-### A) Manual
 
 Dependencies:
 
@@ -28,9 +26,10 @@ On Arch Linux, these can all be installed with:
 yay -S pciutils coreutils xorg-xrandr playerctl ttf-nerd-fonts-symbols curl rustup
 ```
 
-Finally, to install `rsflex` run:
+### A) Cargo
+
 ```
-cargo install --git https://github.com/curlpipe/rsflex
+cargo install rsflex
 ```
 
 ### B) AUR
