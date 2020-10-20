@@ -6,7 +6,6 @@ description = "A super fast system information displayer written in Rust"
 homepage = "https://github.com/curlpipe/rsflex"
 repository = "https://github.com/curlpipe/rsflex"
 license = "MPL-2.0"
-license-file = "LICENSE"
 readme = "README.md"
 keywords = ["flex", "fetch", "rust", "terminal", "command-line"]
 edition = "2018"
