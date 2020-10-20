@@ -2,54 +2,63 @@
 
 <img src="https://i.postimg.cc/DyPtQ50g/image.png">
 
-A tool similar to that of neofetch and rsfetch that gets system information in the blink of an eye.
+System information tool like neofetch or rsfetch with a fast, beautiful CLI.
 
-# Configuration
+## Configuration
 Rsflex aims to be so simple that you can easily edit the source code!
 In the `src/main.rs` file, you can look towards the bottom of the file and rearrange the functions to your hearts content!
 
-# Installation
+## Installation
 
-## Handy AUR package
-rsflex is on the AUR under the name of `rsflex`
-you can install it by doing: `yay -S rsflex`
+### A) AUR
 
-## Buliding rsflex manually
+Rsflex is available on the Arhc User Repository as `rsflex-git`:
 
-Here is what you have to have if you wish to have the full experience of rsflex:
-
- - A modern installation of the rust compiler and cargo `rustup`
- - A linux distrobution at the moment, only Arch Linux is supported :(
- - Nerd fonts to render the fancy icons `ttf-nerd-fonts-symbols`
- - the `lspci` command via `pciutils`
- - the `df` command via `coreutils`
- - the `xrandr` command via `xorg-xrandr`
- - the `uname` command via `coreutils`
- - `playerctl` to read MPRIS status
-
-Here's a handy command to ensure you have everything you need!
 ```
-yay -S pciutils coreutils xorg-xrandr playerctl ttf-nerd-fonts-symbols curl git
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+yay -S rsflex-git
 ```
 
-And when you want to build it:
+### B) Cargo
+
+Dependencies:
+
+ - `rustup` - Modern installation of Rust.
+ - `Arch Linux` - Linux Distribution, only Arch supported right now
+ - `ttf-nerd-fonts-symbols` - Nerd fonts to render the fancy icons
+ - `lspci` - Command via `pciutils`
+ - `df` - Command via `coreutils`
+ - `xrandr` - Command via `xorg-xrandr`
+ - `uname` - Command via `coreutils`
+ - `playerctl` - To read MPRIS status
+
+On Arch Linux, these can all be installed with:
+```
+yay -S pciutils coreutils xorg-xrandr playerctl ttf-nerd-fonts-symbols cargo
+```
+
+**Note: These dependencies are only needed if installed via Cargo, they are included automatically with the AUR package above.**
+
+```
+cargo install rsflex
+```
+
+## Compiling
+
+Building:
 ```
 git clone https://github.com/curlpipe/rsflex
 cd rsflex
 cargo build --release
 ```
 
-To test that it works:
+Running:
 ```
 cargo run --release
 ```
 
-If everything is in order, then you can go ahead and copy it over to your other binaries!
+Install as a binary:
 ```
-sudo cp ./target/release/rsflex /usr/bin/rsflex
+cargo install --path .
 ```
-
-You should now be able to execute `rsflex` wherever you are in your shell!
 
 Have fun! :)
