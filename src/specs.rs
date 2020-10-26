@@ -99,7 +99,9 @@ pub fn get_memory() -> String {
 }
 
 pub fn get_resolution() -> String {
-    let cmd = "xrandr --nograb --current";
+    let cmd = "xrandr --nograb --current |\\
+                awk 'match($0,/[0-9]*\\.[0-9]*\\*/) { 
+                    printf $1 \", \" }'";
     let cmd = Command::new("sh")
         .arg("-c")
         .arg(cmd)
@@ -107,11 +109,14 @@ pub fn get_resolution() -> String {
         .output()
         .expect("Error");
     let result = String::from_utf8_lossy(&cmd.stdout);
-    let result = result.split(',').collect::<Vec<&str>>()[1];
+    let mut result = result.replace("x", " x ").trim().to_string();
+    
+    result.truncate(result.len() - 1);
+
     format!(
         "{} {}",
         "  ",
-        result.replace("current ", "").trim().to_string()
+        result
     )
 }
 
