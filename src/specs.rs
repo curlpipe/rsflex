@@ -91,10 +91,10 @@ pub fn get_memory() -> String {
         }
     }
     format!(
-        "{} {:.0}mb / {:.0}mb",
+        "{} {:.1}gb / {:.0}gb",
         "  ",
-        used / 1024.0,
-        total / 1024.0
+        (used / 1024.0) / 1000.0,
+        (total / 1024.0) / 1000.0
     )
 }
 
