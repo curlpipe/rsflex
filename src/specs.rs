@@ -1,7 +1,6 @@
 use std::env;
 use std::fs;
 use std::process::{Command, Stdio};
-
 #[allow(dead_code)]
 pub fn get_product() -> String {
     match fs::read_to_string("/sys/devices/virtual/dmi/id/product_version") {
@@ -229,28 +228,14 @@ pub fn get_music() -> String {
         format!("{} {}", "ﱘ  ", song)
     }
 }
-
+#[warn(unused_variables)]
 pub fn get_shell() -> String {
-    let cmd = "echo $SHELL";
-    let cmd = Command::new("sh")
-        .arg("-c")
-        .arg(cmd)
-        .stdout(Stdio::piped())
-        .output()
-        .expect("Error");
-    let mut shell = String::from_utf8_lossy(&cmd.stdout).trim().to_string();
-    if shell.is_empty() {
-        String::new()
-    }
-    else{
-    if shell.contains("/usr/bin") {
-        shell = shell.replace("/usr/bin/","");
-    }
-    else{
-        if shell.contains("/bin"){
-        shell = shell.replace("/bin/","");
-    }
-}
-    format!("{} {}","",shell)
-}
+    let mut shell = String::new();
+    let key = "SHELL";
+    let val = env::var(key);
+    match val {
+        Err(_e) => shell = String::new(),
+        Ok(val) => shell = val.replace("/usr","").replace("/bin/","").replace("SHELL:","").trim().to_string(),
+    };
+    format!("{} {}"," ",shell)
 }
