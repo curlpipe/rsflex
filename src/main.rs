@@ -59,7 +59,7 @@ fn main() {
         get_theme()[0],
         get_theme()[1],
         get_theme()[3],
-        "",
+        get_shell(),
         get_cpu(),
         get_gpu(),
         get_disk(),

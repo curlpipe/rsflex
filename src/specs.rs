@@ -229,3 +229,28 @@ pub fn get_music() -> String {
         format!("{} {}", "ﱘ  ", song)
     }
 }
+
+pub fn get_shell() -> String {
+    let cmd = "echo $SHELL";
+    let cmd = Command::new("sh")
+        .arg("-c")
+        .arg(cmd)
+        .stdout(Stdio::piped())
+        .output()
+        .expect("Error");
+    let mut shell = String::from_utf8_lossy(&cmd.stdout).trim().to_string();
+    if shell.is_empty() {
+        String::new()
+    }
+    else{
+    if shell.contains("/usr/bin") {
+        shell = shell.replace("/usr/bin/","");
+    }
+    else{
+        if shell.contains("/bin"){
+        shell = shell.replace("/bin/","");
+    }
+}
+    format!("{} {}","",shell)
+}
+}
