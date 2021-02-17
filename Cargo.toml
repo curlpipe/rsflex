@@ -11,9 +11,7 @@ keywords = ["flex", "fetch", "rust", "terminal", "command-line"]
 edition = "2018"
 
 [profile.release]
-debug = true
-lto = "fat"
-codegen-units = 1
+lto = true
 panic = "abort"
 
 [dependencies]
