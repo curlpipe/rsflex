@@ -1,12 +1,14 @@
 # Rsflex (Rust Flex)
 
-<img src="https://i.postimg.cc/DyPtQ50g/image.png">
+<img src="https://i.postimg.cc/Kckc2kG2/image.png">
 
-System information tool like neofetch or rsfetch with a fast, beautiful CLI.
+System information tool like neofetch but it's much faster.
 
 ## Configuration
-Rsflex aims to be so simple that you can easily edit the source code!
-In the `src/main.rs` file, you can look towards the bottom of the file and rearrange the functions to your hearts content!
+I chose to use a suckless method of configuration
+in the file `src/main.rs` you'll see an easy macro api that allows quite a lot of customisation
+
+If you want to add a new logo, you can do so in the `src/logo.rs` file
 
 ## Installation
 
@@ -23,7 +25,7 @@ yay -S rsflex-git
 Dependencies:
 
  - `rustup` - Modern installation of Rust.
- - `Arch Linux` - Linux Distribution, only Arch supported right now
+ - Arch Or Void Linux (these are the only ones supported)
  - `ttf-nerd-fonts-symbols` - Nerd fonts to render the fancy icons
  - `lspci` - Command via `pciutils`
  - `df` - Command via `coreutils`

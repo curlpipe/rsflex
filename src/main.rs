@@ -1,80 +1,46 @@
+#![warn(clippy::all, clippy::pedantic)]
+mod logo;
+mod macros;
 mod specs;
 
-use specs::*;
-use termion::color;
+use specs::Specs;
+use std::cmp;
+use unicode_width::UnicodeWidthStr as uws;
 
+#[global_allocator]
+static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
+
+#[allow(clippy::vec_init_then_push)]
 fn main() {
-    let dark_scheme = format!(
-        "{}   {}   {}   {}   {}   {}   {}   {}   {}",
-        color::Bg(color::Black),
-        color::Bg(color::Red),
-        color::Bg(color::Green),
-        color::Bg(color::Blue),
-        color::Bg(color::Yellow),
-        color::Bg(color::Magenta),
-        color::Bg(color::Cyan),
-        color::Bg(color::White),
-        color::Bg(color::Reset)
-    );
-    let light_scheme = format!(
-        "{}   {}   {}   {}   {}   {}   {}   {}   {}",
-        color::Bg(color::LightBlack),
-        color::Bg(color::LightRed),
-        color::Bg(color::LightGreen),
-        color::Bg(color::LightBlue),
-        color::Bg(color::LightYellow),
-        color::Bg(color::LightMagenta),
-        color::Bg(color::LightCyan),
-        color::Bg(color::LightWhite),
-        color::Bg(color::Reset)
-    );
-
-    print!("{}", color::Fg(color::Blue));
-
-    println!(
-        "{20}                   ▄                     {19}{}\r
-{20}                  ▟█▙                    {19}{}\r
-{20}                 ▟███▙                   {19}{}\r
-{20}                ▟█████▙                  {19}{}\r
-{20}               ▟███████▙                 {19}{}\r
-{20}              ▂▔▀▜██████▙                {19}{}\r
-{20}             ▟██▅▂▝▜█████▙               {19}{}\r
-{20}            ▟█████████████▙              {19}{}\r
-{20}           ▟███████████████▙             {19}{}\r
-{20}          ▟█████████████████▙            {19}{}\r
-{20}         ▟███████████████████▙           {19}{}\r
-{20}        ▟█████████▛▀▀▜████████▙          {19}{}\r
-{20}       ▟████████▛      ▜███████▙         {19}{}\r
-{20}      ▟█████████        ████████▙        {19}{}\r
-{20}     ▟██████████        █████▆▅▄▃▂       {19}{}\r
-{20}    ▟██████████▛        ▜█████████▙      {19}{}\r
-{20}   ▟██████▀▀▀              ▀▀██████▙     {19}{}\r
-{20}  ▟███▀▘                       ▝▀███▙    {19}{}\r
-{20} ▟▛▀                               ▀▜▙   {19}{}",
-        // Move / Uncomment the "" and the get functions around to change the order
-        "", //get_product(),
-        get_distro(),
-        get_kernel(),
-        get_wmde(),
-        get_theme()[0],
-        get_theme()[1],
-        get_theme()[3],
-        "",
-        get_cpu(),
-        get_gpu(),
-        get_disk(),
-        get_memory(),
-        get_uptime(),
-        get_resolution(),
-        get_packages(),
-        get_music(),
-        "",                           //get_theme()[2],
-        dark_scheme,                  // For showing off your darker colorscheme
-        light_scheme,                 // For showing off your lighter colorscheme
-        color::Fg(color::LightWhite), // Color of the text
-        color::Fg(color::Blue),       // Color of the logo
-    );
-
-    print!("{}", color::Fg(color::Reset));
-    println!();
+    // Read the system specifications
+    let mut system = Specs::new();
+    system.get();
+    let mut info: Vec<String> = vec![];
+    // Customise your fetch here:
+    show!(info); // Seperator
+    show!(info); // Seperator
+    show!("ﲾ   ", system.os, info);
+    show!("   ", system.kernel, info);
+    //show!("ﲊ   ", system.uptime, info);
+    show!("   ", system.packages, info);
+    show!("   ", system.shell, info);
+    //show!("   ", system.cpu, info);
+    //show!("   ", system.gpu, info);
+    show!("   ", system.memory, info);
+    show!("﫭  ", system.disk, info);
+    show!(info); // Seperator
+    show!("   ", system.monitors, info);
+    show!("缾  ", system.wmde, info);
+    //show!("   ", &system.theme[0], info);
+    //show!("   ", &system.theme[1], info);
+    //show!("   ", &system.theme[2], info);
+    //show!("   ", &system.theme[3], info);
+    show!("   ", system.terminal, info);
+    show!(info); // Seperator
+    show!("   ", system.music, info);
+    show!(info); // Seperator
+                 // Print Colours
+    show!(system.colours, info);
+    // Render
+    render!(system, info);
 }

@@ -1,6 +1,6 @@
 [package]
 name = "rsflex"
-version = "0.2.3"
+version = "0.3.0"
 authors = ["Curly <11898833+curlpipe@users.noreply.github.com>"]
 description = "A super fast system information displayer written in Rust"
 homepage = "https://github.com/curlpipe/rsflex"
@@ -11,7 +11,14 @@ keywords = ["flex", "fetch", "rust", "terminal", "command-line"]
 edition = "2018"
 
 [profile.release]
-lto = true
+debug = true
+lto = "fat"
+codegen-units = 1
+panic = "abort"
 
 [dependencies]
-termion = "1"
+cmd_lib = "0.8.5"
+colored = "2.0.0"
+mimalloc = "0.1.24"
+regex = "1.4.3"
+unicode-width = "0.1.8"
