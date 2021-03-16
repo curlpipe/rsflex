@@ -101,7 +101,7 @@ impl Specs {
         if let Ok(n) = run_fun!(xbps-query -l | wc -l) {
             if Path::new("/usr/bin/flatpak").exists() == true{
                 if let Ok(x) = run_fun!(flatpak list | wc -l){
-                    out.push_str(&format!("{} (xbps) {} (flatpak)",n,x.to_string()))
+                    out.push_str(&format!("{} (xbps) {} (flatpak)",n,x))
                 }
             }else{
                 out.push_str(&format!("{} (xbps)", n))
