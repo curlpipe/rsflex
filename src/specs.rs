@@ -99,10 +99,22 @@ impl Specs {
     pub fn get_packages() -> Option<String> {
         let mut out = String::new();
         if let Ok(n) = run_fun!(xbps-query -l | wc -l) {
-            out.push_str(&format!("{} (xbps)", n))
+            if Path::new("/usr/bin/flatpak").exists() == true{
+                if let Ok(x) = run_fun!(flatpak list | wc -l){
+                    out.push_str(&format!("{} (xbps) {} (flatpak)",n,x.to_string()))
+                }
+            }else{
+                out.push_str(&format!("{} (xbps)", n))
+            }
         }
         if let Ok(n) = run_fun!(pacman -Q | wc -l) {
-            out.push_str(&format!("{} (pacman)", n))
+            if Path::new("/usr/bin/flatpak").exists() == true{
+                if let Ok(x) = run_fun!(flatpak list | wc -l){
+                    out.push_str(&format!("{} (pacman) {} (flatpak)",n,x))
+                }
+            }else{
+                out.push_str(&format!("{} (pacman)", n))
+            }
         }
         Some(out)
     }
