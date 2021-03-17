@@ -102,7 +102,7 @@ impl Specs {
             out.push_str(&format!("{} (xbps) ", n))
         }
         if let Ok(n) = run_fun!(pacman -Q | wc -l) {
-           out.push_str(&format!("{} (pacman) ", n))
+            out.push_str(&format!("{} (pacman) ", n))
         }
         if let Ok(n) = run_fun!(flatpak list | wc -l){
             out.push_str(&format!("{} (flatpak) ",n))
