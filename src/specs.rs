@@ -1,6 +1,6 @@
 use crate::logo::{ARCH, VOID};
 use cmd_lib::run_fun;
-use colored::{Color, Colorize};
+use lliw::{Fg, Bg};
 use regex::Regex;
 use std::{env, fs, path::Path};
 
@@ -21,7 +21,7 @@ pub struct Specs {
     pub disk: Option<String>,
     pub music: Option<String>,
     pub colours: [String; 2],
-    pub shade: Color,
+    pub shade: Fg,
 }
 
 impl Specs {
@@ -43,7 +43,7 @@ impl Specs {
             disk: None,
             music: None,
             colours: ["".to_string(), "".to_string()],
-            shade: Color::White,
+            shade: Fg::White,
         }
     }
 
@@ -51,9 +51,9 @@ impl Specs {
         self.os = Self::get_os();
         if let Some(os) = &self.os {
             let (logo, shade) = match os.as_str() {
-                "Void Linux" => (VOID, Color::Green),
-                "Arch Linux" => (ARCH, Color::Blue),
-                _ => ("", Color::White),
+                "Void Linux" => (VOID, Fg::Green),
+                "Arch Linux" => (ARCH, Fg::Blue),
+                _ => ("", Fg::White),
             };
             self.logo = logo.to_string();
             self.shade = shade;
@@ -220,26 +220,15 @@ impl Specs {
 
     pub fn get_colours() -> [String; 2] {
         let dark_scheme = format!(
-            "{}{}{}{}{}{}{}{}",
-            "   ".on_black(),
-            "   ".on_red(),
-            "   ".on_green(),
-            "   ".on_blue(),
-            "   ".on_yellow(),
-            "   ".on_magenta(),
-            "   ".on_cyan(),
-            "   ".on_white(),
+            "{}   {}   {}   {}   {}   {}   {}   {}   {}",
+            Bg::Black, Bg::Red, Bg::Green, Bg::Blue, Bg::Yellow,
+            Bg::Purple, Bg::Cyan, Bg::White, Bg::Reset,
         );
         let light_scheme = format!(
-            "{}{}{}{}{}{}{}{}",
-            "   ".on_bright_black(),
-            "   ".on_bright_red(),
-            "   ".on_bright_green(),
-            "   ".on_bright_blue(),
-            "   ".on_bright_yellow(),
-            "   ".on_bright_magenta(),
-            "   ".on_bright_cyan(),
-            "   ".on_bright_white(),
+            "{}   {}   {}   {}   {}   {}   {}   {}   {}",
+            Bg::LightBlack, Bg::LightRed, Bg::LightGreen,
+            Bg::LightBlue, Bg::LightYellow, Bg::LightPurple,
+            Bg::LightCyan, Bg::LightWhite, Bg::Reset,
         );
         [dark_scheme, light_scheme]
     }

@@ -7,9 +7,6 @@ use specs::Specs;
 use std::cmp;
 use unicode_width::UnicodeWidthStr as uws;
 
-#[global_allocator]
-static GLOBAL: mimalloc::MiMalloc = mimalloc::MiMalloc;
-
 #[allow(clippy::vec_init_then_push)]
 fn main() {
     // Read the system specifications

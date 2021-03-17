@@ -22,9 +22,9 @@ macro_rules! render {
         println!("");
         for i in 0..cmp::max(rows.len(), $space.len()) {
             if let Some(k) = rows.get(i) {
-                use colored::*;
-                print!("{}", k.color($system.shade));
-                print!("{}", " ".repeat(max - uws::width(&k[..])));
+                use lliw::Fg;
+                let pad = " ".repeat(max - uws::width(&k[..]));
+                print!("{}{}{}{}", $system.shade, k, pad, Fg::Reset);
             } else {
                 print!("{}", " ".repeat(max));
             }
