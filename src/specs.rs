@@ -99,13 +99,13 @@ impl Specs {
     pub fn get_packages() -> Option<String> {
         let mut out = String::new();
         if let Ok(n) = run_fun!(xbps-query -l | wc -l) {
-                out.push_str(&format!("{} (xbps)", n))
+            out.push_str(&format!("{} (xbps) ", n))
         }
         if let Ok(n) = run_fun!(pacman -Q | wc -l) {
-                   out.push_str(&format!("{} (pacman)", n))
-            }
+           out.push_str(&format!("{} (pacman) ", n))
+        }
         if let Ok(n) = run_fun!(flatpak list | wc -l){
-                   out.push_str(&format!(" {} (flatpak)",n))
+            out.push_str(&format!("{} (flatpak) ",n))
         }
         Some(out)
     }
